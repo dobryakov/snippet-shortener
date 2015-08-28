@@ -1,4 +1,47 @@
-<h2>Hello World</h2>
-<p>
-  The time is now: <%= Time.now %>
-</p>
+<h2>Create your own social snippet</h2>
+
+<div>
+
+  <%= form_for(Page.new, url: pages_path(:format => :json), html: {id: 'new-page', 'data-type' => 'json'}, remote: true) do |f| %>
+
+      <div>
+        <%= f.label :original_url %><br/>
+        <%= f.text_field :original_url, autofocus: true %>
+      </div>
+
+      <div>
+        <%= f.label :title %><br/>
+        <%= f.text_field :title %>
+      </div>
+
+      <div>
+        <%= f.label :description %><br/>
+        <%= f.text_field :description %>
+      </div>
+
+      <div>
+        <%= f.label :image_url %><br/>
+        <%= f.text_field :image_url %>
+      </div>
+
+      <div><%= f.submit "Create!" %></div>
+
+<% end %>
+
+</div>
+
+<div id="result" style="display:none;"></div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+        $("#new-page").bind("ajax:success", function (xhr, data, status) {
+            //console.log(data);
+            var link = document.location.href + '-/' + data['code'];
+            var html = '<a target="_blank" href="' + link + '">' + link + '</a>';
+            $("#result").html(html);
+            $("#result").show();
+        });
+
+    });
+</script>
