@@ -7,7 +7,7 @@
 <meta property="og:title" content="<%=h @page.title %>">
 <meta property="og:description" content="<%=h @page.description %>">
 <meta property="og:image" content="<%=h @page.image_url %>">
-<meta property="og:url" content="<%=h @page.original_url %>">
+<meta property="og:url" content="<%=h request.original_url %>">
 
 </head>
 <body>
@@ -19,7 +19,7 @@
 <script type="text/javascript">
   setTimeout(function(){
       location.href = '<%=h @page.original_url %>';
-  }, 3);
+  }, <%= ENV['RAILS_ENV'] == 'production' ? 3 : 3000 %>);
 </script>
 
 </body>
