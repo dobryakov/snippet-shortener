@@ -1,5 +1,7 @@
 class Page < ActiveRecord::Base
 
+  has_many :shows
+
   validates_presence_of :original_url, :url => true
 
   before_save do

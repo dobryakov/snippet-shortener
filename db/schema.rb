@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828144215) do
+ActiveRecord::Schema.define(version: 20150829084347) do
 
   create_table "pages", force: :cascade do |t|
     t.text     "title"
@@ -19,8 +19,19 @@ ActiveRecord::Schema.define(version: 20150828144215) do
     t.text     "image_url"
     t.text     "original_url"
     t.string   "code"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "shows_count",  default: 0
   end
+
+  create_table "shows", force: :cascade do |t|
+    t.integer  "page_id"
+    t.string   "ip"
+    t.text     "referrer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "shows", ["page_id"], name: "index_shows_on_page_id"
 
 end

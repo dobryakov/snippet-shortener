@@ -22,8 +22,18 @@ class PagesController < ApplicationController
 
     @page = Page.where(:code => params[:code]).last
 
-    respond_to do |format|
-        format.html { render :show, :layout => false }
+    unless @page.nil?
+
+      Show.create(
+        :page     => @page,
+        :ip       => request.remote_ip,
+        :referrer => request.referer
+      )
+
+      respond_to do |format|
+          format.html { render :show, :layout => false }
+      end
+
     end
 
   end
