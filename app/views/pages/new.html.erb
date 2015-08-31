@@ -1,36 +1,42 @@
-<h2>Create your own social snippet</h2>
+<div class="container">
 
-<div>
+    <h2>Create your own social snippet</h2>
 
-  <%= form_for(Page.new, url: pages_path(:format => :json), html: {id: 'new-page', 'data-type' => 'json'}, remote: true) do |f| %>
+    <div>
 
-      <div>
-        <%= f.label :original_url %><br/>
-        <%= f.text_field :original_url, autofocus: true %>
-      </div>
+      <%= form_for(Page.new, url: pages_path(:format => :json), html: {id: 'new-page', 'data-type' => 'json'}, remote: true) do |f| %>
 
-      <div>
-        <%= f.label :title %><br/>
-        <%= f.text_field :title %>
-      </div>
+          <div>
+            <%= f.label :original_url %><br/>
+            <%= f.text_field :original_url, class: 'form-control', autofocus: true %>
+          </div>
 
-      <div>
-        <%= f.label :description %><br/>
-        <%= f.text_field :description %>
-      </div>
+          <div>
+            <%= f.label :title %><br/>
+            <%= f.text_field :title, class: 'form-control'  %>
+          </div>
 
-      <div>
-        <%= f.label :image_url %><br/>
-        <%= f.text_field :image_url %>
-      </div>
+          <div>
+            <%= f.label :description %><br/>
+            <%= f.text_field :description, class: 'form-control'  %>
+          </div>
 
-      <div><%= f.submit "Create!" %></div>
+          <div>
+            <%= f.label :image_url %><br/>
+            <%= f.text_field :image_url, class: 'form-control'  %>
+          </div>
 
-<% end %>
+          <div class="clearfix"><br/></div>
+
+          <div><%= f.submit "Create!", class: 'btn btn-success' %></div>
+
+    <% end %>
+
+    </div>
+
+    <div id="result" style="display:none;"></div>
 
 </div>
-
-<div id="result" style="display:none;"></div>
 
 <script type="text/javascript">
     jQuery(document).ready(function () {
