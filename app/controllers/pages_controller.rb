@@ -9,7 +9,7 @@ class PagesController < ApplicationController
     @model = Page.new(permitted_params)
 
     respond_to do |format|
-      if @model.save
+      if verify_recaptcha(:model => @model, :message => "Oh! It's error with reCAPTCHA!") && @model.save
         format.json { render json: @model, status: :created, :layout => false }
       else
         format.json { render json: @model.errors, status: :unprocessable_entity, :layout => false }

@@ -54,3 +54,6 @@ gem 'le'
 end
 
 gem 'validate_url'
+
+gem 'dotenv-rails'
+gem "recaptcha", :require => "recaptcha/rails" # https://github.com/ambethia/recaptcha/
