@@ -1,40 +1,56 @@
 <div class="container">
 
-    <h2>Create your own social snippet</h2>
+  <h2>Create your own social snippet</h2>
 
-    <div>
+  <div>
 
-      <%= form_for(Page.new, url: pages_path(:format => :json), html: {id: 'new-page', 'data-type' => 'json'}, remote: true) do |f| %>
+    <%= form_for(Page.new, url: pages_path(:format => :json), html: {id: 'new-page', 'data-type' => 'json'}, remote: true) do |f| %>
 
-          <div>
-            <%= f.label :original_url %><br/>
-            <%= f.text_field :original_url, class: 'form-control', autofocus: true %>
-          </div>
+        <div>
+          <%= f.label :original_url %><br/>
+          <%= f.text_field :original_url, class: 'form-control', autofocus: true %>
+        </div>
 
-          <div>
-            <%= f.label :title %><br/>
-            <%= f.text_field :title, class: 'form-control'  %>
-          </div>
+        <div>
+          <%= f.label :title %><br/>
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
 
-          <div>
-            <%= f.label :description %><br/>
-            <%= f.text_field :description, class: 'form-control'  %>
-          </div>
+        <div>
+          <%= f.label :description %><br/>
+          <%= f.text_field :description, class: 'form-control' %>
+        </div>
 
-          <div>
-            <%= f.label :image_url %><br/>
-            <%= f.text_field :image_url, class: 'form-control'  %>
-          </div>
+        <div>
+          <%= f.label :image_url %><br/>
+          <%= f.text_field :image_url, class: 'form-control' %>
+        </div>
 
-          <div class="clearfix"><br/></div>
+        <div class="clearfix"><br/></div>
 
-          <div><%= f.submit "Create!", class: 'btn btn-success' %></div>
+        <div><%= f.submit "Create!", class: 'btn btn-success' %></div>
 
     <% end %>
 
-    </div>
+  </div>
 
-    <div id="result" style="display:none;"></div>
+  <div class="clearfix"><br/></div>
+
+  <div id="sample">
+    <table id="sample_table">
+      <tr>
+        <td id="sample_title" colspan="2"></td>
+      </tr>
+      <tr>
+        <td><img id="sample_image" src=""></td>
+        <td id="sample_description"></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="clearfix"><br/></div>
+
+  <div id="result" style="display:none;"></div>
 
 </div>
 
@@ -47,6 +63,18 @@
             var html = '<a target="_blank" href="' + link + '">' + link + '</a>';
             $("#result").html(html);
             $("#result").show();
+        });
+
+        $('#page_title').on('keyup', function(event){
+            $('#sample_title').html($(event.target).val());
+        });
+
+        $('#page_description').on('keyup', function(event){
+            $('#sample_description').html($(event.target).val());
+        });
+
+        $('#page_image_url').on('keyup', function(event){
+            $('#sample_image').attr('src', $(event.target).val());
         });
 
     });
