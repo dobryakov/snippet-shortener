@@ -1,0 +1,17 @@
+script:
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rake
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: JR3iY8pwZJYhrz7QTzYnLehg3+C7G/wNlXTeA09BGkhvMA79enVUIm0B449w+AEqcBXwxT8tONhcUiA06MqjC2oK4KakjFwB8BIbaf9BOyTfyzBuBJ62NoJwj4SqMFEqy9b3cOsEZPJDNG0pNryIh5YDLz09/3JhNR2/+Uqlev4=
+  app: 'whispering-peak-6884'
+  on:
+    repo: dobryakov/snippet-shortener
+    branch: master
+  run:
+    - "rake db:migrate"
+  strategy: git
+
