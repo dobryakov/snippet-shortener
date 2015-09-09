@@ -38,6 +38,17 @@ class PagesController < ApplicationController
 
   end
 
+  def stats
+
+    @page = Page.where(:code => params[:code]).last
+    unless @page.nil?
+      respond_to do |format|
+        format.html { render :stats }
+      end
+    end
+
+  end
+
   private
 
   def permitted_params

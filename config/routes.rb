@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :pages
 
   get '-/:code', to: 'pages#show'
+  get 'stats/:code', to: 'pages#stats'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
