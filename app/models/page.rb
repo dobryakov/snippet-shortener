@@ -16,8 +16,17 @@ class Page < ActiveRecord::Base
 
     defaults = {}
     (0..23).each{ |h| defaults[h] = 0 }
-    #self.shows.select('count(*) as c, EXTRACT(HOUR FROM created_at) AS h').group('h').map{|i| { hour: i.h, count: i.c } }
     self.shows.select('count(*) as c, EXTRACT(HOUR FROM created_at) AS h').group('h').map{|i| defaults[(i.h).to_i] = i.c }
+    defaults
+
+  end
+
+  def dow_stat
+
+    defaults = {}
+    (0..6).each{ |d| defaults[d] = 0 }
+    self.shows.select('count(*) as c, EXTRACT(DOW FROM created_at) AS d').group('d').map{|i| defaults[(i.d).to_i] = i.c }
+    defaults
 
   end
 
